@@ -1,0 +1,14 @@
+{
+	"lang": [{
+		"title": "제목",
+		"scription": "내용",
+		"deposit": "예금",
+		"withdraw": "지출",
+		"total": "총계",
+		"date": "날짜",
+		"time": "시간",
+		"memo": "메모"
+	}, {
+		"dfdf": "dfffd"
+	}]
+}
