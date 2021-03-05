@@ -58,7 +58,7 @@ public class Editor : MonoBehaviour
 
     void BtnEVent(Button btn)
     {
-        Common.GetInstance.PrintLog('w', "BtnEVent", "btn.name");
+        Common.GetInstance.PrintLog('w', "BtnEVent", btn.name);
 
         switch (btn.name.Split('_')[1].ToLower())
         {
@@ -73,14 +73,14 @@ public class Editor : MonoBehaviour
 
                 for (int i=0; i<listA.Count; i++)
                 {
-                    strBld.Append(listA[i] + ',');
-
                     if (i == listA.Count - 1)
                         strBld.Append(listA[i]);
+                    else
+                        strBld.Append(listA[i] + ',');
                 }
                 listA.Clear(); //clear unsing
 
-                Debug.LogWarning("are : " + strBld.ToString());
+                Debug.LogWarning("fin : " + strBld.ToString());
 
                 //check is insert or update?
                 //##
