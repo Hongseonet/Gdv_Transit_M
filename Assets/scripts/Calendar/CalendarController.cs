@@ -198,7 +198,7 @@ public class CalendarController : MonoBehaviour
                     //Debug.LogWarning("ddf : " + items[c]);
                     string[] item = items[c].Split('#');
 
-                    if (int.Parse(item[1]) < 0)
+                    if (int.Parse(item[1].Replace(",","")) < 0)
                         daySum += int.Parse(item[1]);
 
                     target.GetComponent<DayData>().SetOutTotal(daySum);

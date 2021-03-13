@@ -2549,7 +2549,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtTotalIn: {fileID: 1975257622}
   txtTotalOut: {fileID: 977444862}
-  txtMonthOut: {fileID: 709231578}
 --- !u!1 &2047151686
 GameObject:
   m_ObjectHideFlags: 0
@@ -4882,7 +4881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_AnchorMin.x
@@ -4890,7 +4889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4934,7 +4933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4951,10 +4950,6 @@ PrefabInstance:
     - target: {fileID: 4514075848726341451, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_Name
       value: Item
-      objectReference: {fileID: 0}
-    - target: {fileID: 4514075848726341451, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}

@@ -64,20 +64,14 @@ public class Editor : MonoBehaviour
         switch (btn.name.Split('_')[1].ToLower())
         {
             case "write":
-                Debug.LogWarning("not functions yet");
+                Debug.LogWarning("not defined yet");
                 break;
-            case "share": //upload dbfile to cloud
+            case "share": //apply data to db
                 List<string> listItems = new List<string>();
-
-                //listA.Add("급여#3800000");
-                //listA.Add("보너스#1200000");
-                //listA.Add("커피#-38000");
-                //listA.Add("상시#1200000");
-                //selectedDay = "2021-03-04";
 
                 //find scrview
                 for (int i=1; i<scrView.childCount-1; i++)
-                    listItems.Add(scrView.GetChild(i).GetComponent<Item>().GetData());
+                    listItems.Add(scrView.GetChild(i).GetComponent<Item>().GetData().Replace(",","")); //remove specific word ','
 
                 StringBuilder strBld = new StringBuilder();
 

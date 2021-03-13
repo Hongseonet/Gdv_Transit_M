@@ -42,7 +42,13 @@ public class Item : MonoBehaviour
 
     public string GetData()
     {
-        return inpScript.text + '#' + inpValue.text;
+        char addWord; //for is deposit
+        if (!isDeposit)
+            addWord = '-';
+        else
+            addWord = '+';
+
+        return inpScript.text + '#' + addWord + inpValue.text;
     }
 
     void BtnEvent(Button btn)
