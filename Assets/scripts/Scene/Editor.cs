@@ -13,7 +13,8 @@ public class Editor : MonoBehaviour
     [Tooltip("Transit")]
     [SerializeField] Transform btnRoot, scrView;
 
-    bool isUpdated; //is updated on view
+    bool isDataUpdate; //is updated on view
+    string selectedDay; //giaoisd
 
 
     private void Awake()
@@ -62,32 +63,43 @@ public class Editor : MonoBehaviour
 
         switch (btn.name.Split('_')[1].ToLower())
         {
-            case "save":
-                List<string> listA = new List<string>();
-                listA.Add("급여#3800000");
-                listA.Add("보너스#1200000");
-                listA.Add("커피#-38000");
-                listA.Add("상시#1200000");
+            case "write":
+                Debug.LogWarning("not functions yet");
+                break;
+            case "share": //upload dbfile to cloud
+                List<string> listItems = new List<string>();
+
+                //listA.Add("급여#3800000");
+                //listA.Add("보너스#1200000");
+                //listA.Add("커피#-38000");
+                //listA.Add("상시#1200000");
+                //selectedDay = "2021-03-04";
+
+                //find scrview
+                for (int i=1; i<scrView.childCount-1; i++)
+                    listItems.Add(scrView.GetChild(i).GetComponent<Item>().GetData());
 
                 StringBuilder strBld = new StringBuilder();
 
-                for (int i=0; i<listA.Count; i++)
+                for (int i = 0; i < listItems.Count; i++)
                 {
-                    if (i == listA.Count - 1)
-                        strBld.Append(listA[i]);
+                    if (i == listItems.Count - 1)
+                        strBld.Append(listItems[i]);
                     else
-                        strBld.Append(listA[i] + ',');
+                        strBld.Append(listItems[i] + ',');
                 }
-                listA.Clear(); //clear unsing
+                listItems.Clear(); //clear unsing
 
-                Debug.LogWarning("fin : " + strBld.ToString());
+                Common.GetInstance.PrintLog('d', "final data", strBld.ToString());
 
                 //check is insert or update?
-                //##
-                //SqliteMgr.GetInstance.InsertData("");
-                break;
-            case "share": //upload dbfile to cloud
-                
+                if (isDataUpdate)
+                    SqliteMgr.GetInstance.UpdateData("update inout set data = '" + strBld + "' where date = '" + selectedDay + "';");
+                else
+                    SqliteMgr.GetInstance.InsertData("insert into inout values('" + selectedDay + "','" + strBld + "');");
+
+                //refresh data
+                this.GetComponent<CalendarController>().CheckDataOnDay();
                 break;
             case "close":
                 //close an edit page
@@ -101,8 +113,10 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public void DayEvent(string item, string date)
+    public void DayEvent(string item, string date) //day click event
     {
+        selectedDay = date;// date.Split('-'); //2021-03-24
+
         if (item.Contains("Day_"))
         {
             //clear prev history
@@ -116,8 +130,10 @@ public class Editor : MonoBehaviour
             //read data on current date
             string existData = SqliteMgr.GetInstance.ReadData("select data from inout where date == '" + date + "';");
 
-            if (string.IsNullOrEmpty(existData))
+            if (string.IsNullOrEmpty(existData)) //routine out when data null
                 return;
+
+            isDataUpdate = true; //for db update or insert
             Common.GetInstance.PrintLog('w', "exist data", existData); //return 1 line only
 
             //json parsing

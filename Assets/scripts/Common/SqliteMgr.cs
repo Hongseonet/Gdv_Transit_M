@@ -18,16 +18,20 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 
         if (!PlayerPrefs.HasKey("dbPath"))
             PlayerPrefs.SetString("dbPath", dbPath);
-        Debug.LogWarning("path : " + dbPath);
+
+        Common.GetInstance.PrintLog('w', "SqliteMgr", dbPath);
 
         //check DB file exist
         //Debug.LogWarning("copy db files");
         if (ConstValue.ISDEV && File.Exists(dbPath)) //remove db file on dev mode
             File.Delete(dbPath);
 
-        BetterStreamingAssets.Initialize();
-        byte[] readByte = BetterStreamingAssets.ReadAllBytes(dbFileName);
-        File.WriteAllBytes(dbPath, readByte);
+        if (!File.Exists(dbPath))
+        {
+            BetterStreamingAssets.Initialize();
+            byte[] readByte = BetterStreamingAssets.ReadAllBytes(dbFileName);
+            File.WriteAllBytes(dbPath, readByte);
+        }
     }
 
     
@@ -73,6 +77,8 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 
     public void InsertData(string query)
     {
+        Common.GetInstance.PrintLog('w', "InsertData", query);
+
         using (SqliteConnection conn = new SqliteConnection("URI=file:" + PlayerPrefs.GetString("dbPath")))
         {
             conn.Open();
@@ -255,7 +261,7 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 
     public void UpdateData(string query)
     {
-        Debug.Log("receive : " + query);
+        Common.GetInstance.PrintLog('w', "UpdateData", query);
 
         using (SqliteConnection conn = new SqliteConnection("URI=file:" + PlayerPrefs.GetString("dbPath")))
         {

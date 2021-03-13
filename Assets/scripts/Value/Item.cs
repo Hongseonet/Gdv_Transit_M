@@ -40,6 +40,11 @@ public class Item : MonoBehaviour
         //base.TotalValue += int.Parse(inpValue.text);
     }
 
+    public string GetData()
+    {
+        return inpScript.text + '#' + inpValue.text;
+    }
+
     void BtnEvent(Button btn)
     {
         switch (btn.name.Split('_')[1])

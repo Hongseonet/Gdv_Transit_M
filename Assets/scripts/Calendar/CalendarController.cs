@@ -10,8 +10,8 @@ public class CalendarController : MonoBehaviour
     public Text _yearNumText;
     public Text _monthNumText;
 
-    [SerializeField]
-    Button btnYearPrev, btnMonthPRev, btnYearNext, btnMonthNext;
+    [SerializeField] Button btnYearPrev, btnMonthPRev, btnYearNext, btnMonthNext;
+    [SerializeField] Text txtMonthOut;
 
     public GameObject refItem;
 
@@ -175,15 +175,17 @@ public class CalendarController : MonoBehaviour
         //_calendarPanel.SetActive(false);
     }
 
-    void CheckDataOnDay()
+    public void CheckDataOnDay() //scan history on cur month
     {
         //scan data at this month
         List<string> rtnData = SqliteMgr.GetInstance.ReadData("select date, data from inout where date like '" + _dateTime.Year.ToString() + "-" + _dateTime.Month.ToString("D2") + "%' order by date asc", 2);
+        int monthSum = 0; //total month out
 
         //for (int i = 0; i < rtnData.Count; i++)
-        for(int i = 0; i < rtnData.Count; i++)
+        for (int i = 0; i < rtnData.Count; i++)
         {
             int daySum = 0; //total out only
+
             //Debug.LogWarning("dd : " + rtnData[i]); //eg 2021-02-10\식비#-1000,커피#-1200000
             string[] dateData = rtnData[i].Split('\\'); //classfy between date and data
             string[] items = dateData[1].Split(','); //classfy all items
@@ -201,9 +203,10 @@ public class CalendarController : MonoBehaviour
 
                     target.GetComponent<DayData>().SetOutTotal(daySum);
                 }
+                monthSum += daySum;
             }
         }
-
+        txtMonthOut.text = string.Format("{0:N0}", monthSum);
         rtnData.Clear();
     }
 }
