@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class TotalValue : MonoBehaviour
 {
     [SerializeField] Text txtTotalIn, txtTotalOut;
-    [SerializeField] Text txtMonthOut;
 
    public void TotalValues(int values)
     {
@@ -31,5 +30,11 @@ public class TotalValue : MonoBehaviour
         //
         //Debug.LogWarning("aaa " + string.Format("{0:N0}", int.Parse(txtTotalIn.text)));
         //Debug.LogWarning("bbb " + string.Format("{0:N0}", int.Parse(txtTotalOut.text)));
+    }
+
+    public void ClearValue()
+    {
+        txtTotalIn.text = "";
+        txtTotalOut.text = "";
     }
 }

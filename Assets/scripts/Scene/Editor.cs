@@ -102,13 +102,13 @@ public class Editor : MonoBehaviour
                 this.GetComponent<CalendarController>().CheckDataOnDay();
                 break;
             case "close":
-                //close an edit page
-                transitEditor.gameObject.SetActive(false);
+                //close detail list
+                for(int i=1; i<scrView.childCount-1; i++)
+                    Destroy(scrView.GetChild(i).gameObject);
 
-                //remove items on list
-                for(int i=1; i<scrView.childCount; i++) //
-                    Destroy(scrView.GetChild(i));
-                
+                //clear daily in/out value
+                //## hard coding
+                this.GetComponent<Editor>().transitEditor.GetChild(0).GetComponent<TotalValue>().ClearValue();
                 break;
         }
     }

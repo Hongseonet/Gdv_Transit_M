@@ -9,11 +9,7 @@ public class DayData : MonoBehaviour
 
     public void SetOutTotal(int dayTotal)
     {
-        txtTotal.text = string.Format("{0:N0}", dayTotal);
-    }
-
-    public void ExistInOut(bool isActive)
-    {
-        imgCheck.enabled = isActive;
+        if(dayTotal < 0)
+            txtTotal.text = string.Format("{0:N0}", dayTotal);
     }
 }
