@@ -43,12 +43,12 @@ public class CalendarController : MonoBehaviour
             //post process by scr width
             //item.transform.localPosition = new Vector3((i % 7) * 155  + startPos.x, startPos.y - (i / 7) * 80, startPos.z);
             item.transform.localPosition = new Vector3((i % 7) * itemWidth + startPos.x, startPos.y - (i / 7) * 100, startPos.z);
+            item.GetComponent<RectTransform>().sizeDelta = new Vector2(itemWidth, 100f);
 
             _dateItems.Add(item);
         }
 
         _dateTime = DateTime.Now;
-
         CreateCalendar();
     }
 
