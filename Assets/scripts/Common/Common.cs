@@ -45,6 +45,35 @@ public class Common : SingletonMgr<Common>
         }
     }
 
+    public void SetColor(Image img, Color color)
+    {
+        if (color.r > 1f && color.b > 1f && color.b > 1f)
+            img.color = new Color(color.r / 255, color.g / 255, color.b / 255, color.a / 255);
+        else
+            img.color = color;
+    }
+    public void SetColor(RawImage img, Color color)
+    {
+        if (color.r > 1f && color.b > 1f && color.b > 1f)
+            img.color = new Color(color.r / 255, color.g / 255, color.b / 255, color.a / 255);
+        else
+            img.color = color;
+    }
+    public void SetColor(Text txt, Color color)
+    {
+        if (color.r > 1f && color.b > 1f && color.b > 1f)
+            txt.color = new Color(color.r / 255, color.g / 255, color.b / 255, color.a / 255);
+        else
+            txt.color = color;
+    }
+    public void SetColor(Button btn, Color color)
+    {
+        if (color.r > 1f && color.b > 1f && color.b > 1f)
+            btn.gameObject.GetComponent<Image>().color = new Color(color.r / 255, color.g / 255, color.b / 255, color.a / 255);
+        else
+            btn.gameObject.GetComponent<Image>().color = color;
+    }
+
     public void AppQuit()
     {
         Application.Quit();

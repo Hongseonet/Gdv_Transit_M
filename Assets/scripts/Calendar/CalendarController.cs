@@ -21,7 +21,7 @@ public class CalendarController : MonoBehaviour
     private DateTime _dateTime;
     public static CalendarController _calendarInstance;
 
-    Text _target;
+    GameObject pastObj; //for effect of activate selected day
 
 
     void Start()
@@ -156,23 +156,22 @@ public class CalendarController : MonoBehaviour
         //CreateCalendar();
     }
 
-    public void ShowCalendar(Text target)
-    {
-        _calendarPanel.SetActive(true);
-        _target = target;
-        //_calendarPanel.transform.position = new Vector3(965, 475, 0);//Input.mousePosition-new Vector3(0,120,0);
-    }
-
-    
     //get date string selected date
     public void OnDateItemClick(GameObject day)
     {
+        if (pastObj == null)
+            pastObj = day;
+        else if(pastObj != day)
+        {
+            Common.GetInstance.SetColor(pastObj.GetComponent<Image>(), Color.white);
+            pastObj = day;
+        }
+            
+        Common.GetInstance.SetColor(day.GetComponent<Image>(), new Color(255, 0, 0, 255));
+
         string strDay = day.transform.GetComponentInChildren<Text>().text;
         //_target.text = _yearNumText.text + "-" + _monthNumText.text + "-" + int.Parse(day).ToString("D2");
-        //Common.GetInstance.PrintLog('w', "OnDateItemClick", _yearNumText.text + "-" + _monthNumText.text + "-" + int.Parse(strDay).ToString("D2"));
         this.GetComponent<Editor>().DayEvent(day.name, _dateTime.Year.ToString() + "-" + _dateTime.Month.ToString("D2") + "-" + int.Parse(strDay).ToString("D2"));
-
-        //_calendarPanel.SetActive(false);
     }
 
     public void CheckDataOnDay() //scan history on cur month

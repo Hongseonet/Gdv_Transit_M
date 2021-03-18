@@ -8,6 +8,7 @@ public class Editor : MonoBehaviour
 {
     [Tooltip("Common")]
     [SerializeField] bool isDev;
+    [SerializeField] bool isClearDB;
     [SerializeField] Transform transitEditor;
 
     [Tooltip("Transit")]
@@ -16,13 +17,20 @@ public class Editor : MonoBehaviour
     bool isDataUpdate; //is updated on view
     string selectedDay; //giaoisd
 
-
+    
     private void Awake()
     {
         ConstValue.ISDEV = isDev;
 
         if (isDev)
+        {
             PlayerPrefs.DeleteAll();
+            GameObject.Find("/Reporter").SetActive(true);
+        }
+        GameObject.Find("/Reporter").SetActive(false);
+
+        if (isClearDB)
+            ConstValue.CLEARDB = true;
     }
 
     void Start()
@@ -87,11 +95,20 @@ public class Editor : MonoBehaviour
                 Common.GetInstance.PrintLog('d', "final data", strBld.ToString());
 
                 //check is insert or update?
-                if (isDataUpdate)
-                    SqliteMgr.GetInstance.UpdateData("update inout set data = '" + strBld + "' where date = '" + selectedDay + "';");
+                if(string.IsNullOrEmpty(strBld.ToString()))
+                {
+                    Debug.LogWarning("dd : " + selectedDay);
+                    SqliteMgr.GetInstance.RemoveRows("delete from inout where date = '" + selectedDay + "';");
+                    //delete from inout where date = '2021-12-01'
+                }
                 else
-                    SqliteMgr.GetInstance.InsertData("insert into inout values('" + selectedDay + "','" + strBld + "');");
-
+                {
+                    if (isDataUpdate)
+                        SqliteMgr.GetInstance.UpdateData("update inout set data = '" + strBld + "' where date = '" + selectedDay + "';");
+                    else
+                        SqliteMgr.GetInstance.InsertData("insert into inout values('" + selectedDay + "','" + strBld + "');");
+                }
+                
                 //refresh data
                 this.GetComponent<CalendarController>().CheckDataOnDay();
                 break;
@@ -107,7 +124,7 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public void DayEvent(string item, string date) //day click event
+    public void DayEvent(string item, string date) //click event each day
     {
         selectedDay = date;// date.Split('-'); //2021-03-24
 

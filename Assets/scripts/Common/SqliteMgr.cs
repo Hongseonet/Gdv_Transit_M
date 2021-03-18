@@ -23,7 +23,7 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 
         //check DB file exist
         //Debug.LogWarning("copy db files");
-        if (ConstValue.ISDEV && File.Exists(dbPath)) //remove db file on dev mode
+        if (ConstValue.CLEARDB && File.Exists(dbPath)) //remove db file on dev mode
             File.Delete(dbPath);
 
         if (!File.Exists(dbPath))
@@ -102,7 +102,7 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
         if (string.IsNullOrEmpty(query))
             return null;
 
-        Debug.Log("get query : " + query);
+        Common.GetInstance.PrintLog('d', "ReadData", query);
         string rtnData = "";
 
         //idb connection
@@ -318,6 +318,8 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 
     public void RemoveRows(string query)
     {
+        Common.GetInstance.PrintLog('w', "RemoveRows", query);
+
         using (SqliteConnection conn = new SqliteConnection("URI=file:" + PlayerPrefs.GetString("dbPath")))
         {
             conn.Open();
