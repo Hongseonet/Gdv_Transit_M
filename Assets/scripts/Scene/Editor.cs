@@ -10,6 +10,7 @@ public class Editor : MonoBehaviour
     [SerializeField] bool isDev;
     [SerializeField] bool isClearDB;
     [SerializeField] Transform transitEditor;
+    [SerializeField] CanvasScaler canvasScaler;
 
     [Tooltip("Transit")]
     [SerializeField] Transform btnRoot, scrView;
@@ -17,7 +18,9 @@ public class Editor : MonoBehaviour
     bool isDataUpdate; //is updated on view
     string selectedDay; //giaoisd
 
-    
+    float scrRatio;
+    //work resolution : 1080*1920 HD
+
     private void Awake()
     {
         ConstValue.ISDEV = isDev;
@@ -31,6 +34,9 @@ public class Editor : MonoBehaviour
 
         if (isClearDB)
             ConstValue.CLEARDB = true;
+
+        scrRatio = Screen.width / 1080f;
+        //canvasScaler.scaleFactor = scrRatio;
     }
 
     void Start()
@@ -43,6 +49,8 @@ public class Editor : MonoBehaviour
             Button btn = btnRoot.GetChild(i).GetComponent<Button>();
             btn.onClick.AddListener(() => BtnEVent(btn));
         }
+
+        GetComponent<CalendarController>().Init();
 
         SqliteMgr.GetInstance.Init();
     }

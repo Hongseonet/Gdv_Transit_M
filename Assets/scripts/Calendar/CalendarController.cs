@@ -22,16 +22,18 @@ public class CalendarController : MonoBehaviour
     public static CalendarController _calendarInstance;
 
     GameObject pastObj; //for effect of activate selected day
-
-
-    void Start()
+    
+    
+    public void Init()
     {
         _calendarInstance = this;
         Vector3 startPos = refItem.transform.localPosition;
         _dateItems.Clear();
         _dateItems.Add(refItem);
 
-        int itemWidth = Screen.width / 7;
+        //int itemWidth = Screen.width / 7;
+        int itemWidth = 1080 / 7;
+
         for (int i = 1; i < _totalDateNum; i++)
         {
             GameObject item = GameObject.Instantiate(refItem) as GameObject;
@@ -176,6 +178,10 @@ public class CalendarController : MonoBehaviour
 
     public void CheckDataOnDay() //scan history on cur month
     {
+        //clear past data
+
+        //
+
         //scan data at this month
         List<string> rtnData = SqliteMgr.GetInstance.ReadData("select date, data from inout where date like '" + _dateTime.Year.ToString() + "-" + _dateTime.Month.ToString("D2") + "%' order by date asc", 2);
         int monthSum = 0; //total month out
