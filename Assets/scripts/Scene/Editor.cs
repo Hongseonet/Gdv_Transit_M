@@ -30,7 +30,8 @@ public class Editor : MonoBehaviour
             PlayerPrefs.DeleteAll();
             GameObject.Find("/Reporter").SetActive(true);
         }
-        GameObject.Find("/Reporter").SetActive(false);
+        else
+            GameObject.Find("/Reporter").SetActive(false);
 
         if (isClearDB)
             ConstValue.CLEARDB = true;
@@ -49,10 +50,9 @@ public class Editor : MonoBehaviour
             Button btn = btnRoot.GetChild(i).GetComponent<Button>();
             btn.onClick.AddListener(() => BtnEVent(btn));
         }
+        SqliteMgr.GetInstance.Init();
 
         GetComponent<CalendarController>().Init();
-
-        SqliteMgr.GetInstance.Init();
     }
 
     void Update() //for debug key
@@ -80,7 +80,7 @@ public class Editor : MonoBehaviour
         switch (btn.name.Split('_')[1].ToLower())
         {
             case "write":
-                Debug.LogWarning("not defined yet");
+                //Debug.LogWarning("not defined yet");
                 break;
             case "share": //apply data to db
                 List<string> listItems = new List<string>();
@@ -167,6 +167,7 @@ public class Editor : MonoBehaviour
                 items.SetActive(true);
                 items.transform.SetParent(scrView);
                 items.transform.SetSiblingIndex(scrView.childCount - 2); //set hierarchy order
+                items.transform.localScale = Vector3.one;
 
                 //insert data to items
                 string[] tmpStr = new string[2];

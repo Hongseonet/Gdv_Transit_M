@@ -9,7 +9,9 @@ public class DayData : MonoBehaviour
 
     public void SetOutTotal(int dayTotal)
     {
-        if(dayTotal < 0)
+        if (dayTotal < 0)
             txtTotal.text = string.Format("{0:N0}", dayTotal);
+        else
+            txtTotal.text = "";
     }
 }

@@ -266,7 +266,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -2887,7 +2887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399dff08d90d07548aa7cccff3497dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDev: 0
+  isDev: 1
   isClearDB: 0
   transitEditor: {fileID: 557810161}
   canvasScaler: {fileID: 194652052}
@@ -4988,7 +4988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1383
+      value: 1023
       objectReference: {fileID: 0}
     - target: {fileID: 4514075848726341450, guid: 7456a5c12b78f4d9587991176fa852d6, type: 3}
       propertyPath: m_SizeDelta.y

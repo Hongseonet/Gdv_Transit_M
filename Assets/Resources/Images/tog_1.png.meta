@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: bb9e0b8e8ad44490a8e8c2f419ef4101
+guid: 0f1783846161c49268e85d2a14b2d2ec
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 1190314012271333977
-    second: check_2_0
-  - first:
-      213: 735622938116296198
-    second: check_2_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -107,49 +101,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: check_2_0
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 144
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9525a90a948d48010800000000000000
-      internalID: 1190314012271333977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: check_2_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 17
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60e0d0b2a25753a00800000000000000
-      internalID: 735622938116296198
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

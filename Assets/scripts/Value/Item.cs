@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     [SerializeField] Button btnRemove;
-    [SerializeField] Toggle togDeposit;
+    [SerializeField] Button btnDeposit;
     [SerializeField] InputField inpScript, inpValue;
 
     bool isDeposit;
@@ -13,10 +13,7 @@ public class Item : MonoBehaviour
     private void OnEnable()
     {
         btnRemove.onClick.AddListener(() => BtnEvent(btnRemove));
-        togDeposit.onValueChanged.AddListener(delegate
-        {
-            TogEvent(togDeposit);
-        });
+        btnDeposit.onClick.AddListener(() => BtnEvent(btnDeposit));
     }
 
     private void OnDestroy()
@@ -59,11 +56,18 @@ public class Item : MonoBehaviour
                 //check saved data, didn't yet 
                 Destroy(this.gameObject);
                 break;
-        }
-    }
+            case "Deposit":
+                isDeposit = !isDeposit;
 
-    void TogEvent(Toggle tog)
-    {
-        isDeposit = tog.isOn;
+                string spriteImage;
+                if (isDeposit)
+                    spriteImage = "Images/tog_1";
+                else
+                    spriteImage = "Images/tog_2";
+
+                Common.GetInstance.SetImage(spriteImage, btn.GetComponent<Image>());
+                
+                break;
+        }
     }
 }

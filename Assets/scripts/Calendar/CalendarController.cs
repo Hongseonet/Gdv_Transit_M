@@ -99,6 +99,14 @@ public class CalendarController : MonoBehaviour
         _monthNumText.text = _dateTime.Month.ToString("D2");
     }
 
+    public void ClearCalendar()
+    {
+        //clear date table
+        Transform dayRoot = refItem.transform.parent;
+        for(int i=0; i<dayRoot.childCount; i++)
+            dayRoot.GetChild(i).GetComponent<DayData>().SetOutTotal(0);
+    }
+
     int GetDays(DayOfWeek day)
     {
         switch (day)
@@ -179,8 +187,7 @@ public class CalendarController : MonoBehaviour
     public void CheckDataOnDay() //scan history on cur month
     {
         //clear past data
-
-        //
+        ClearCalendar();
 
         //scan data at this month
         List<string> rtnData = SqliteMgr.GetInstance.ReadData("select date, data from inout where date like '" + _dateTime.Year.ToString() + "-" + _dateTime.Month.ToString("D2") + "%' order by date asc", 2);

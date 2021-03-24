@@ -30,5 +30,6 @@ public class AddItem : MonoBehaviour
         items.SetActive(true);
         items.transform.SetParent(parentTrs);
         items.transform.SetSiblingIndex(parentTrs.childCount - 2); //set hierarchy order
+        items.transform.localScale = Vector3.one;
     }
 }

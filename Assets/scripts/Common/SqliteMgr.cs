@@ -9,7 +9,7 @@ public class SqliteMgr : SingletonMgr<SqliteMgr>
 {
     //Table in : AresStatus, Contents
     string dbPath = "";
-    string dbFileName = "/InOut.db"; //@"/innerData.db";
+    string dbFileName = "/inout.db"; //@"/innerData.db";
 
 
     public void Init()
