@@ -14,4 +14,9 @@ public class DayData : MonoBehaviour
         else
             txtTotal.text = "";
     }
+
+    public int GetDay()
+    {
+        return int.Parse(transform.GetChild(1).GetComponent<Text>().text);
+    }
 }

@@ -46,7 +46,7 @@ public class Download : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    //Debug.LogWarning("not pose data in " + idx + " : " + e.Message);
+                    Debug.LogWarning("not pose data in " + e.Message);
                 }
             }
             sReader.Close();
