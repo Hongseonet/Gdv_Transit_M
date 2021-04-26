@@ -61,9 +61,9 @@ public class Item : MonoBehaviour
 
                 string spriteImage;
                 if (isDeposit)
-                    spriteImage = "Images/tog_1";
+                    spriteImage = "Images/btnPlus";
                 else
-                    spriteImage = "Images/tog_2";
+                    spriteImage = "Images/btnMinus";
 
                 Common.GetInstance.SetImage(spriteImage, btn.GetComponent<Image>());
                 

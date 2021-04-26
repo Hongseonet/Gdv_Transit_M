@@ -162,10 +162,9 @@ public class Editor : MonoBehaviour
                 //Debug.LogWarning("dd : " + jData[(i + 1).ToString()].ToString());
 
                 //cpy gameobject
-                GameObject items = Instantiate(scrView.GetChild(0).gameObject);
+                GameObject items = Instantiate(Resources.Load("Prefebs/Item"), scrView) as GameObject;
                 items.name = "item_" + i;
                 items.SetActive(true);
-                items.transform.SetParent(scrView);
                 items.transform.SetSiblingIndex(scrView.childCount - 2); //set hierarchy order
                 items.transform.localScale = Vector3.one;
 
